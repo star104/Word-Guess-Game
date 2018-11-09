@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Psychic Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+
+<p>The Psychic Game</p>
+
+<div>
+   
+    <p id="wins-text"></p>
+    <p id="losses-text"></p>
+    <p id="choiceLeft-text"></p>
+    <p id="yourGuessesSoFar-text"></p>
+
+  </div>
+
+<script>
+var computerchoice = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var wins = 0;
+var losses = 0;
+var choiceleft = 9;
+var yourguessSF = [];
+
+    var yourguessesText = document.getElementById("yourGuessesSoFar-text");
+    var winsText = document.getElementById("wins-text");
+    var lossesText = document.getElementById("losses-text");
+    var choiceLeftText = document.getElementById("choiceLeft-text");
+
+//Guest key in
+document.onkeyup = function(event) {
+   var userGuess = event.key;
+   choiceleft--; 
+   yourguessSF.push(userGuess);
+
+      //favTVshows.push(tvShow);
+  //computer random choose
+  var computerGuess = computerchoice
+ [Math.floor(Math.random() *
+  computerchoice.length)];
+
+if(userGuess===computerGuess)
+{  
+  wins++;
+  choiceleft=9;
+  yourguessSF = [];
+}
+else
+{ 
+  if(choiceleft===0)
+  {
+    losses++;
+    choiceleft=9;
+    yourguessSF = [];
+  }
+}
+
+//display the user and computer guesses
+
+winsText.textContent = "Wins: " + wins;
+lossesText.textContent = "Losses: " + losses;
+choiceLeftText.textContent = "Choice Left: " + choiceleft;
+yourguessesText.textContent = "You Guessed: " + yourguessSF;
+
+}    
+    
+</script>
+    
+     
+</body>
+
+
+</html>
